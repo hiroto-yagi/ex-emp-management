@@ -16,11 +16,11 @@ public class AdministratorService {
     @Autowired
     private AdministratorRepository administratorRepository;
 
-    // /**
-    //  * 管理者情報の挿入.
-    //  * @param administrator 管理者情報
-    //  */
-    // public void insert(Administrator administrator) {
-    //     administratorRepository.insert(administrator);
-    // }
+    /**
+     * 管理者情報の挿入.
+     * @param administrator 管理者情報
+     */
+    public void insert(Administrator administrator) {
+        administratorRepository.insert(administrator);
+    }
 }

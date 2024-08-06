@@ -29,19 +29,20 @@ public class AdministratorController {
         return "administrator/insert";
     }
 
-    // /**
-    //  * 管理者情報登録.
-    //  * @param form 管理者情報フォーム
-    //  * @return ログイン画面
-    //  */
-    // @PostMapping("/insert")
-    // public String insert(InsertAdministratorForm form) {
-    //     Administrator administrator = new Administrator();
-    //     // formオブジェクトからadministratorオブジェクトにプロパティ値をコピー
-    //     BeanUtils.copyProperties(form, administrator);
-    //     administratorService.insert(administrator);
-    //     return "redirect:/toInsert";
-    // }
+    /**
+     * 管理者情報登録.
+     * @param form 管理者情報フォーム
+     * @return ログイン画面
+     */
+    @PostMapping("/insert")
+    public String insert(InsertAdministratorForm form) {
+        Administrator administrator = new Administrator();
+        // formオブジェクトからadministratorオブジェクトにプロパティ値をコピー
+        BeanUtils.copyProperties(form, administrator);
+        administratorService.insert(administrator);
+        return "redirect:/";
+    }
+    
 
 
 }
