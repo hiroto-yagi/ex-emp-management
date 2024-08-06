@@ -1,11 +1,9 @@
 package com.example.form;
 
-import org.springframework.validation.annotation.Validated;
 
 /**
  * 管理者情報登録フォーム.
  */
-@Validated
 public class InsertAdministratorForm {
     private String name;
     private String mailAddress;
