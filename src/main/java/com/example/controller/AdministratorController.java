@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Administrator;
 import com.example.form.InsertAdministratorForm;
+import com.example.form.LoginForm;
 import com.example.service.AdministratorService;
+
 
 /**
  * 管理者登録用Conrtroller.
@@ -43,6 +45,16 @@ public class AdministratorController {
         return "redirect:/";
     }
     
-
+    /**
+     * ログイン画面表示.
+     * @param form ログイン用フォーム
+     * @return ログイン画面
+     */
+    @GetMapping("/")
+    public String toLogin(LoginForm form, Model model) {
+        model.addAttribute("mailAddress", form.getMailAddress());
+        model.addAttribute("password", form.getPassword());
+        return "administrator/login";
+    }
 
 }
