@@ -13,6 +13,9 @@ import com.example.domain.Employee;
 import com.example.form.UpdateEmployeeForm;
 import com.example.service.EmployeeService;
 
+/**
+ * 従業員情報操作用Controller.
+ */
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
