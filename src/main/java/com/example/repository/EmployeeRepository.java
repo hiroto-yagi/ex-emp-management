@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.example.domain.Employee;
 
+/**
+ * 従業員情報操作用Repository.
+ */
 @Repository
 public class EmployeeRepository {
     @Autowired
