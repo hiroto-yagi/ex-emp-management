@@ -27,6 +27,10 @@ public class AdministratorRepository {
         return administrator;
     };
 
+    /**
+     * 管理者情報挿入.
+     * @param administrator 管理者情報
+     */
     public void insert(Administrator administrator) {
         String sql = "INSERT INTO administrators (name, mail_address, password) VALUES(:name, :mailAddress, :password);";
         SqlParameterSource param = new MapSqlParameterSource()
@@ -38,6 +42,12 @@ public class AdministratorRepository {
         template.update(sql, param);
     }
     
+    /**
+     * 従業員情報取得.
+     * @param mailAddress メールアドレス
+     * @param password パスワード
+     * @return メールアドレス、パスワードに対応する従業員情報
+     */
     public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
         String sql = "SELECT * FROM administrators WHERE (mail_address=:mailAddress AND password=:password);";
         

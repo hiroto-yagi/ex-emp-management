@@ -63,9 +63,14 @@ public class AdministratorController {
         return "administrator/login";
     }
 
+    /**
+     * ログイン機能.
+     * @param form ログイン用フォーム
+     * @return 従業員情報一覧ページにリダイレクト
+     */
     @PostMapping("/login")
     public String login(LoginForm form, Model model) {
-        Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
+        Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());   
         if (administrator == null) {
             model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です");
             return "administrator/login";
