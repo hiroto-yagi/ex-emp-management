@@ -10,7 +10,7 @@ public class Employee {
     private String name;
     private String image;
     private String gender;
-    private java.util.Date hireDate;
+    private Date hireDate;
     private String mailAddress;
     private String zipCode;
     private String address;
@@ -71,11 +71,11 @@ public class Employee {
         this.gender = gender;
     }
 
-    public java.util.Date getHireDate() {
+    public Date getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(java.util.Date hireDate) {
+    public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }
 
