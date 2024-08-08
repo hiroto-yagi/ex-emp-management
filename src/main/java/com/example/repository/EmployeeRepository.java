@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.example.domain.Employee;
@@ -43,5 +45,16 @@ public class EmployeeRepository {
         String sql = "SELECT * FROM employees ORDER BY id DESC;";
         List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
         return employeeList;
+    }
+
+    /**
+     * 従業員IDに一致する従業員情報取得.
+     * @param id 従業員ID
+     * @return 従業員情報
+     */
+    public Employee load(Integer id) {
+        String sql = "SELECT * FROM employees WHERE id=:id;";
+        SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+        return template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
     }
 }
