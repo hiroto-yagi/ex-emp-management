@@ -40,7 +40,6 @@ public class EmployeeController {
      */
     @GetMapping("/showDetail")
     public String showDetail(@RequestParam("id")String id, Model model, UpdateEmployeeForm form) {
-        // Employee employee = employeeService.showDetail(Integer.parseInt(id));
         Employee employee = employeeService.showDetail(Integer.parseInt(id));
         model.addAttribute("employee", employee);
         return "employee/detail";
