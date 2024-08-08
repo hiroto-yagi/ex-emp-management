@@ -13,6 +13,8 @@ import com.example.form.InsertAdministratorForm;
 import com.example.form.LoginForm;
 import com.example.service.AdministratorService;
 
+import jakarta.servlet.http.HttpSession;
+
 
 /**
  * 管理者登録用Conrtroller.
@@ -22,6 +24,10 @@ import com.example.service.AdministratorService;
 public class AdministratorController {
     @Autowired
     AdministratorService administratorService;
+
+    // sessionスコープを使用するための設定
+    @Autowired
+    private HttpSession session;
 
     @GetMapping("/toInsert")
     public String toInsert(InsertAdministratorForm form, Model model) {
@@ -55,6 +61,17 @@ public class AdministratorController {
         model.addAttribute("mailAddress", form.getMailAddress());
         model.addAttribute("password", form.getPassword());
         return "administrator/login";
+    }
+
+    @PostMapping("/login")
+    public String login(LoginForm form, Model model) {
+        Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
+        if (administrator == null) {
+            model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です");
+            return "administrator/login";
+        }
+            session.setAttribute("administratorName", administrator.getName());
+        return "redirect:/employee/showList";
     }
 
 }

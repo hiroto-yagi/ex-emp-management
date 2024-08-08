@@ -22,7 +22,7 @@ public class AdministratorRepository {
         Administrator administrator = new Administrator();
         administrator.setId(rs.getInt("id"));
         administrator.setName(rs.getString("name"));
-        administrator.setMailAddress(rs.getString("mailAddress"));
+        administrator.setMailAddress(rs.getString("mail_address"));
         administrator.setPassword(rs.getString("password"));
         return administrator;
     };
@@ -38,15 +38,17 @@ public class AdministratorRepository {
         template.update(sql, param);
     }
     
-    // public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
-    //     String sql = "SELECT * FROM administrators WHERE mail_address password";
+    public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
+        String sql = "SELECT * FROM administrators WHERE (mail_address=:mailAddress AND password=:password);";
         
-    //     SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password", password);
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("mailAddress", mailAddress)
+                .addValue("password", password);
 
-    //     List<Administrator> administratorList = template.query(sql, param, ADMINISTRATOR_ROW_MAPPER);
-    //     if (administratorList.size() == 0) {
-    //         return null;
-    //     }
-    //     return administratorList.get(0);
-    // }
+        List<Administrator> administratorList = template.query(sql, param, ADMINISTRATOR_ROW_MAPPER);
+        if (administratorList.size() == 0) {
+            return null;
+        }
+        return administratorList.get(0);
+    }
 }
